@@ -1,6 +1,7 @@
 img/
 out/
 .vim/
+*.wiki
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

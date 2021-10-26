@@ -34,7 +34,7 @@ def image_energy(src):
     dy = cv.Sobel(src, ddepth, 0, 1, ksize=3, borderType=cv.BORDER_DEFAULT)
     dx_abs = cv.convertScaleAbs(dx)
     dy_abs = cv.convertScaleAbs(dy)
-    return cv.addWeighted(dx_abs, 0.5, dy_abs, 0.5, 0) # TODO: replace by dx_abs + dy_abs
+    return dx_abs + dy_abs
 
 # Aplica o algoritmo de programação dinâmica na imagem de energia, gerando, para cada
 # posição res[i, j], a energia total do melhor caminho saindo de (i, j)
@@ -88,6 +88,7 @@ def remove_seam(src, mask, seam):
 
     return res, rmask
 
+# Aplica uma mask de remoção sobre a função de energia
 def apply_mask(sob, mask):
     copy = np.copy(sob).astype(np.float64)
     mx = np.max(copy)
